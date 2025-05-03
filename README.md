@@ -1,10 +1,16 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/phOqX7q9)
 # CS50 TSE
-## Student name (GitHub username)
+## Bora Bozdogan (Bora-Bozdogan)
 
-The assignment and Specs are in a [public repo](https://github.com/CS50DartmouthSP25/labs/tse).
-Do not clone that repo; view it on GitHub.
-Watch there for any commits that may represent updates to the assignment or specs.
+ASSUMPTIONS and DIFFERENCES: 
 
-Add here any assumptions you made while writing the crawler, any ways in which your implementation differs from the three Specs, or any ways in which you know your implementation fails to work.
+I assumed we write the assumptions and differences here because of the note above
+I wrote them to the crawler and common README.md as well, as github states I should
+write them there.
 
+I assumed that two types of directory inputs were possible
+    1- ends with slash (../cs50dev/)
+    2- doesn't end with slash (../cs50dev/)
+    therefore I made the memory allocation a dynamic process ready for both cases.
+
+I assumed I don't need to provide detailed function headers for crawler, as I've 
+documented every step of the code with detailed comments.

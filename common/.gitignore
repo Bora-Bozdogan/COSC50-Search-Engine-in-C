@@ -1,0 +1,17 @@
+# compiled binaries and .o files
+*.o
+
+# test output
+*.tmp
+*.out
+*.log
+
+# core dumps
+core
+
+# backups
+*~
+
+# the data and related files, ignored as specified in instructions.
+../data/
+../data/.crawler

@@ -1,14 +1,13 @@
-# Makefile for CS50 library
+# Makefile for common library
 #   Builds and compiles all these utility functions into a library.
 #
-# David Kotz, April 2016, July 2017, April 2019, 2021
-# updated by Xia Zhou, July 2016
+# Bora Bozdogan, April 2025
 
 # object files, and the target library
-OBJS = bag.o file.o hashtable.o hash.o mem.o set.o webpage.o counters.o
+OBJS = pagedir.o
 LIB = libcs50.a
 
-CFLAGS = -Wall -pedantic -std=c11 -ggdb $(FLAGS)
+CFLAGS = -Wall -pedantic -std=c11 -ggdb $(FLAGS) -I../libcs50 -I../common
 CC = gcc
 MAKE = make
 
@@ -18,14 +17,7 @@ $(LIB): $(OBJS)
 	ar cr $(LIB) $(OBJS)
 
 # Dependencies: object files depend on header files
-bag.o: bag.h
-counters.o: counters.h
-file.o: file.h
-hashtable.o: hashtable.h set.h hash.h 
-hash.o: hash.h
-mem.o: mem.h
-set.o: set.h
-webpage.o:  webpage.h
+pagedir.o: pagedir.c pagedir.h
 
 .PHONY: clean sourcelist
 
@@ -36,5 +28,8 @@ sourcelist: Makefile *.md *.c *.h
 
 # clean up after our compilation
 clean:
+	rm -rf *.dSYM  # MacOS debugger info
+	rm -f *~ *.o
 	rm -f core
 	rm -f $(LIB) *~ *.o
+	rm -f *.a
