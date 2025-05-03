@@ -4,7 +4,6 @@ crawler
 
 # test output
 *.tmp
-*.out
 *.log
 
 # core dumps
