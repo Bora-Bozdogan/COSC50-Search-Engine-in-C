@@ -5,7 +5,7 @@
 
 # object files, and the target library
 OBJS = pagedir.o
-LIB = libcs50.a
+LIB = common.a
 
 CFLAGS = -Wall -pedantic -std=c11 -ggdb $(FLAGS) -I../libcs50 -I../common
 CC = gcc
