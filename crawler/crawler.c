@@ -124,7 +124,8 @@ static void crawl(char* seedURL, char* pageDirectory, const int maxDepth) {
     hashtable_delete(visited, NULL); //null itemdelete because items aren't malloc'd
     //delete bag
     bag_delete(toVisit, NULL); //null itemdelete because used webpage_delete 
-
+    //exit 0 if successful, per requirements spec
+    exit(0);
 }
 
 /**************** pageScan() ****************/

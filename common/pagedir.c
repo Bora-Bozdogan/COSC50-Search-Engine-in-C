@@ -85,6 +85,7 @@ void pagedir_save(const webpage_t* page, const char* pageDirectory, const int do
         //error
         fprintf(stderr, "Couldn't open file for writing");
         free(pathname);
+        exit(1); //exit nonzero if couldn't write file, per requirements spec
     } else {
         //opened file
         //print URL on first line, depth on second, and contents on the rest
