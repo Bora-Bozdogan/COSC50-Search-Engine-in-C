@@ -105,7 +105,7 @@ static void crawl(char* seedURL, char* pageDirectory, const int maxDepth) {
             fprintf(stderr, "\nCouldn't get html for webpage\n");
             exit(1);
         }
-        //printf("Fetched: %s\n", webpage_getURL(webpage));
+        printf("Fetched: %s\n", webpage_getURL(webpage));
         //if fetch was succesfull
         //save webpage to pageDirectory
         pagedir_save(webpage, pageDirectory, docId);
@@ -114,7 +114,7 @@ static void crawl(char* seedURL, char* pageDirectory, const int maxDepth) {
         //if webpage is not at maxDepth
         if (webpage_getDepth(webpage) < maxDepth) {
             //pageScan the HTML
-            //printf("Scanning: %s\n", webpage_getURL(webpage));
+            printf("Scanning: %s\n", webpage_getURL(webpage));
             pageScan(webpage, toVisit, visited);
         }            
         //delete webpage
@@ -140,7 +140,7 @@ static void pageScan(webpage_t* page, bag_t* pagesToCrawl, hashtable_t* pagesSee
     while (nextURL != NULL) {
         //normalize the URL
         char* normalizedUrl = normalizeURL(nextURL);
-        //printf("Found: %s\n", normalizedUrl);
+        printf("Found: %s\n", normalizedUrl);
         //if internal, and can be normalized
         if (normalizedUrl != NULL) {
             //normalize seedUrl
@@ -165,16 +165,16 @@ static void pageScan(webpage_t* page, bag_t* pagesToCrawl, hashtable_t* pagesSee
                     exit(1);
                 } 
                 //insert the webpage into the bag
-                //printf("Added: %s\n", nextURL);
+                printf("Added: %s\n", nextURL);
                 bag_insert(pagesToCrawl, webpage);
             } else {
                 //free this URL and get next URL
-                //printf("IgnDupl: %s\n", nextURL);
+                printf("IgnDupl: %s\n", nextURL);
                 free(normalizedUrl);
             }
         } else {
             //free this URL and get next URL
-            //printf("IgnExtrn: %s\n", nextURL);
+            printf("IgnExtrn: %s\n", nextURL);
             free(normalizedUrl);
         }
         nextURL = webpage_getNextURL(page, &pos);
