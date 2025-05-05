@@ -12,5 +12,3 @@ I assumed that two types of directory inputs were possible
     2- doesn't end with slash (../cs50dev/)
     therefore I made the memory allocation a dynamic process ready for both cases.
 
-I assumed I don't need to provide detailed function headers for crawler, as I've 
-documented every step of the code with detailed comments.

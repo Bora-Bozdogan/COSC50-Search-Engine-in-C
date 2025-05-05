@@ -24,6 +24,22 @@ static void crawl(char* seedURL, char* pageDirectory, const int maxDepth);
 
 static void pageScan(webpage_t* page, bag_t* pagesToCrawl, hashtable_t* pagesSeen);
 
+/* ***************************
+ *  main - start of crawler.c
+ *
+ *  Parameters:
+ *    argc - number of arguments
+ *    argv - list of arguments
+ *
+ *  Returns:
+ *    returns nonzero if error, 0 on success
+ *
+ *  Behavior:
+ *    checks if argument number valid, else returns nonzero
+ *    assigns arguments to variables, calls parseArgs
+ *    if parseArgs successful, runs crawl with the args
+ *   
+ */
 int
 main (int argc, char* argv[])
 {
@@ -42,10 +58,25 @@ main (int argc, char* argv[])
     }
 }
 
-/**************** parseArgs() ****************/
-/* given args from command line, extract them into function params
- * return only if succesful
-*/
+/**************** parseArgs() ****************                                                                                
+ *  parseArgs - given args from command line, extract them into function params
+ *                                                                                                                
+ *  Parameters:                                                                                                   
+ *    argc - const int of number of args provided                                                                              
+ *    argv - char* array of variables
+ *    seedURL - char** pointer to initial url string
+ *    pageDirectory - char** pointer to page directory to save pages
+ *    maxDepth - int* pointer to max depth to search                                                                             
+ *                                                                                                                
+ *  Returns:                                                                                                    
+ *    void
+ *
+ *  Behavior:
+ *    checks if seedURL can be normalized, and normalizedURL is internal
+ *    checks if pageDirectory can be initialized    
+ *    checks if maxDepth in the specified range
+ *    completes successfuly if all checks valid, else, exits nonzero                                          
+ */
 static void parseArgs(const int argc, char* argv[],
                       char** seedURL, char** pageDirectory, int* maxDepth) {
     
@@ -76,10 +107,22 @@ static void parseArgs(const int argc, char* argv[],
 
 }
 
-/**************** crawl() ****************/
-/* go through a page, check every link, save as webpages if internal and
- * valid. Returns void, adds valid webpages to pagedirectory specified.
-*/
+/**************** crawl() ****************                                                                                
+ *  crawl - go through a page, check every link, save as webpages if internal 
+ *  and valid     
+ *                                                                                                                
+ *  Parameters:                                                                                                   
+ *    seedURL - char* url of initial website to start crawl                                                                             
+ *    pageDirectory - char* address to store valid pages
+ *    maxDepth - const int max depth value to search pages                                                                            
+ *                                                                                                                
+ *  Returns:                                                                                                    
+ *    void
+ *
+ *  Behavior:
+ *    goes through every page, checks all the links, save as webpages if link
+ *    is internal and valid.                                                   
+ */
 static void crawl(char* seedURL, char* pageDirectory, const int maxDepth) {
     //crawl from seedURL to maxDepth and save pages in pageDirectory
     //initialize docId counter
@@ -128,10 +171,22 @@ static void crawl(char* seedURL, char* pageDirectory, const int maxDepth) {
     exit(0);
 }
 
-/**************** pageScan() ****************/
-/* scan a page, go through every URL in the file, add to bag of pages visited
- * returns void, updates bag and hashtable.
-*/
+/**************** pageScan() ****************                                                                                
+ *  pageScan - scan a page, go through every URL in the file, 
+ *  add to bag of pages visited if new
+ *                                                                                                                
+ *  Parameters:                                                                                                   
+ *    page - webpage_t* webpage struct pointer                                                                             
+ *    pagesToCrawl - bag_t* bag pointer to hold webpages to crawl
+ *    pagesSeen - hashtable_t* hashtable pointer to hold seen webpages                                                                            
+ *                                                                                                                
+ *  Returns:                                                                                                    
+ *    void
+ *
+ *  Behavior:
+ *    scan a page, go through every URL in the page, check if it's in hashtable, if not 
+ *    add it to bag of pages to crawl, repeat for each page in bag                                               
+ */
 static void pageScan(webpage_t* page, bag_t* pagesToCrawl, hashtable_t* pagesSeen) {
 
     int pos = 0;
