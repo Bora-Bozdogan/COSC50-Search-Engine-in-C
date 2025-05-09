@@ -117,6 +117,6 @@ void set_iterate(set_t* set, void* arg,
  *   We free the strings that represent key for each item, because 
  *   this module allocated that memory in set_insert.
  */
-void set_delete(set_t* set, void (*itemdelete)(void* item) );
+void set_delete(set_t* set, void (*itemdelete)(void* item));
 
 #endif // __SET_H

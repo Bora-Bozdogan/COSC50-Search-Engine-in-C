@@ -1,0 +1,98 @@
+./testing.sh
+letters depth 0 with output files put through indextest
+
+no arguments
+
+invalid argument number, please input 2
+
+a single argument
+
+invalid argument number, please input 2
+
+too many arguments
+
+invalid argument number, please input 2
+
+invalid and non-existent pageDirectory
+
+pageDirectory lacking the .crawler file
+
+invalid indexFilename (directory path)
+Couldn't open file for writing
+
+already existing but unwriteable indexFilename
+Couldn't open file for writing
+
+letters depth 0 with output files put through indextest and compared through indexcmp
+
+letters depth 1 with output files put through indextest and compared through indexcmp
+
+letters depth 10 with output files put through indextest and compared through indexcmp
+
+toscrape depth 0 with output files put through indextest and compared through indexcmp
+
+toscrape depth 1 with output files put through indextest and compared through indexcmp
+
+wikipedia depth 0 with output files put through indextest and compared through indexcmp
+
+wikipedia depth 1 with output files put through indextest and compared through indexcmp
+
+valgrind: letters depth 10
+==1645790== Memcheck, a memory error detector
+==1645790== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==1645790== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==1645790== Command: ./indexer ../data/letters/10 ../data/valgrind-letters.txt
+==1645790== 
+==1645790== 
+==1645790== HEAP SUMMARY:
+==1645790==     in use at exit: 0 bytes in 0 blocks
+==1645790==   total heap usage: 1,856 allocs, 1,856 frees, 206,098 bytes allocated
+==1645790== 
+==1645790== All heap blocks were freed -- no leaks are possible
+==1645790== 
+==1645790== For lists of detected and suppressed errors, rerun with: -s
+==1645790== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==1645800== Memcheck, a memory error detector
+==1645800== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==1645800== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==1645800== Command: ./indextest ../data/valgrind-letters.txt ../data/valgrind-letters-copy.txt
+==1645800== 
+==1645800== 
+==1645800== HEAP SUMMARY:
+==1645800==     in use at exit: 0 bytes in 0 blocks
+==1645800==   total heap usage: 318 allocs, 318 frees, 23,800 bytes allocated
+==1645800== 
+==1645800== All heap blocks were freed -- no leaks are possible
+==1645800== 
+==1645800== For lists of detected and suppressed errors, rerun with: -s
+==1645800== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+valgrind: toscrape depth 1
+==1645815== Memcheck, a memory error detector
+==1645815== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==1645815== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==1645815== Command: ./indexer ../data/toscrape/1 ../data/valgrind-toscrape.txt
+==1645815== 
+==1645815== 
+==1645815== HEAP SUMMARY:
+==1645815==     in use at exit: 0 bytes in 0 blocks
+==1645815==   total heap usage: 2,335,929 allocs, 2,335,929 frees, 42,741,858,901 bytes allocated
+==1645815== 
+==1645815== All heap blocks were freed -- no leaks are possible
+==1645815== 
+==1645815== For lists of detected and suppressed errors, rerun with: -s
+==1645815== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==1646327== Memcheck, a memory error detector
+==1646327== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==1646327== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==1646327== Command: ./indextest ../data/valgrind-toscrape.txt ../data/valgrind-toscrape-copy.txt
+==1646327== 
+==1646327== 
+==1646327== HEAP SUMMARY:
+==1646327==     in use at exit: 0 bytes in 0 blocks
+==1646327==   total heap usage: 66,067 allocs, 66,067 frees, 4,935,449 bytes allocated
+==1646327== 
+==1646327== All heap blocks were freed -- no leaks are possible
+==1646327== 
+==1646327== For lists of detected and suppressed errors, rerun with: -s
+==1646327== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

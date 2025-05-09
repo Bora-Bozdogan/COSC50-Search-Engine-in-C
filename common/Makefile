@@ -4,7 +4,7 @@
 # Bora Bozdogan, April 2025
 
 # object files, and the target library
-OBJS = pagedir.o
+OBJS = pagedir.o index.o word.o
 LIB = common.a
 
 CFLAGS = -Wall -pedantic -std=c11 -ggdb $(FLAGS) -I../libcs50 -I../common
@@ -17,7 +17,11 @@ $(LIB): $(OBJS)
 	ar cr $(LIB) $(OBJS)
 
 # Dependencies: object files depend on header files
-pagedir.o: pagedir.c pagedir.h
+pagedir.o: pagedir.c pagedir.h index.c word.c
+
+index.o: pagedir.c pagedir.h index.c word.c
+
+word.o: pagedir.c pagedir.h index.c word.c
 
 .PHONY: clean sourcelist
 

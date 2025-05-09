@@ -1,0 +1,13 @@
+# compiled binaries and .o files
+indexer
+*.o
+
+# test output
+*.tmp
+*.log
+
+# core dumps
+core
+
+# backups
+*~
