@@ -1,0 +1,13 @@
+# compiled binaries and .o files
+querier
+*.o
+
+# test output
+*.tmp
+*.log
+
+# core dumps
+core
+
+# backups
+*~

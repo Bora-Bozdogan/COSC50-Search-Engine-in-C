@@ -1,3 +1,9 @@
+```
+******************
+* EXTENSION USED *
+****************** 
+```
+
 # CS50 TSE
 ## Bora Bozdogan (Bora-Bozdogan)
 

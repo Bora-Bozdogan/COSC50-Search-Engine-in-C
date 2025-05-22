@@ -59,6 +59,22 @@ void index_add(index_t* index, char* word, int docID) {
   }
 }
 
+/**************** index_find ****************/
+/* find counters for a word */
+/* see index.h for more information */
+counters_t* index_find(index_t* index, char* word) {
+  //check if key exists in index
+  hashtable_t* ht = index->ht;
+  counters_t* ctrs;
+  if ((ctrs = hashtable_find(ht, word)) == NULL) {
+    //key doesn't exist, print error and exist nonzero
+    fprintf(stderr, "word doesn't exist in index\n");
+    exit(1);
+  } 
+  //key exists, return counter
+  return ctrs;
+}
+
 /**************** index_set ****************/
 /* set a counter value of index */
 /* see index.h for more information */
@@ -125,6 +141,46 @@ void index_save(index_t* index, char* indexFilename) {
     fprintf(stderr, "couldn't open file\n");
     exit(1);
   }
+}
+
+/**************** index_load() ****************/ 
+ /* create index from file */
+ /* see index.h for more information*/
+index_t* index_load(char* indexFilename) {   
+    //get file pointer, no need to check again after validateParams
+    FILE* fp = fopen(indexFilename, "r");
+
+    /*
+    create index, use number of lines as hashtable slots as every line 
+    corresponds to a word in the file that's being read. This is being 
+    done instead of an arbitary number to be more memory-efficient.
+    */
+    index_t* index = index_new(file_numLines(fp));
+
+    char* line;
+    //read each line
+    while ((line = file_readLine(fp)) != NULL) {
+        
+        //get words and initialize variables
+        char** words = splitWords(line);
+        int count = 0;
+
+        //loop over words
+        //starting from 1, pattern is 'docID counter' repeated
+        //0 is the word itself, skip
+        for (int i = 1; words[i] != NULL; i+=2) {
+            char* docID = words[i];
+            count = atoi(words[i+1]);
+            index_set(index, words[0], docID, count);
+        }
+
+        //free the array of words and the line
+        freeWords(words);
+        free(line);
+
+    }
+    fclose(fp);
+    return index;
 }
 
 /**************** itemdelete ****************/

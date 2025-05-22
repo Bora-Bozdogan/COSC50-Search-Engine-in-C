@@ -56,6 +56,18 @@ index_t* index_new(int numSlots);
  */
 void index_add(index_t* index, char* word, int docID);
 
+/**************** index_find ****************/
+/* get all values of a key in index
+ *
+ * Caller provides:
+ *   a valid index pointer, a valid word string
+ * We guarantee:
+ *   if valid params, counters representing the word is returned
+ * Caller is responsible for:
+ *   providing valid parameters
+*/
+counters_t* index_find(index_t* index, char* word);
+
 /**************** index_set ****************/
 /* Set an item value of index.
  *
@@ -83,6 +95,20 @@ void index_set(index_t* index, char* word, char* docID, int count);
  *   providing valid params.
  */
 bool index_check(index_t* index, char* word);
+
+/**************** index_save ****************/
+/* Reads a file, create an index based on it
+ *
+ *  Caller provides:
+ *    indexFilename - char* location of existing index
+ *
+ *  We guarantee:
+ *    nonzero if error, index_t* else    
+ *
+ *  Behavior:
+ *    reads a file, creates index based on it  
+ */
+index_t* index_load(char* indexFilename);
 
 /**************** index_save ****************/
 /* Save the index to a file. 

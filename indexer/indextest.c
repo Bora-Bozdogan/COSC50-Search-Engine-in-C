@@ -12,7 +12,6 @@
 #include "index.h"
 
 static bool validateParams(char* indexFilename, char* newIndexFilename);
-static index_t* indextest_read(char* indexFilename);
 
  /* ***************************
  *  main - start of indextest.c
@@ -44,7 +43,7 @@ main (int argc, char* argv[])
         }
 
         //create an index, fill based on file
-        index_t* index = indextest_read(indexFilename);
+        index_t* index = index_load(indexFilename);
 
         //write the index to another file
         index_save(index, newIndexFilename);
@@ -95,56 +94,4 @@ static bool validateParams(char* indexFilename, char* newIndexFilename) {
 
     return true;
 
-}
-
-
- /* ***************************
- *  readIndex - reads a file, creates an index based on it
- *
- *  Parameters:
- *    indexFilename - char* location of existing index
- *    newIndexFilename - char* location to write new file
- *
- *  Returns:
- *    nonzero if error, void else    
- *
- *  Behavior:
- *    reads a file, creates index based on it  
- *
- */
-static index_t* indextest_read(char* indexFilename) {   
-    //get file pointer, no need to check again after validateParams
-    FILE* fp = fopen(indexFilename, "r");
-
-    /*
-    create index, use number of lines as hashtable slots as every line 
-    corresponds to a word in the file that's being read. This is being 
-    done instead of an arbitary number to be more memory-efficient.
-    */
-    index_t* index = index_new(file_numLines(fp));
-
-    char* line;
-    //read each line
-    while ((line = file_readLine(fp)) != NULL) {
-        
-        //get words and initialize variables
-        char** words = splitWords(line);
-        int count = 0;
-
-        //loop over words
-        //starting from 1, pattern is 'docID counter' repeated
-        //0 is the word itself, skip
-        for (int i = 1; words[i] != NULL; i+=2) {
-            char* docID = words[i];
-            count = atoi(words[i+1]);
-            index_set(index, words[0], docID, count);
-        }
-
-        //free the array of words and the line
-        freeWords(words);
-        free(line);
-
-    }
-    fclose(fp);
-    return index;
 }
