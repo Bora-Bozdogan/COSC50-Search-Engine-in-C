@@ -33,7 +33,7 @@ Pseudocode:
     exit zero
 
 
-### parseArgs
+### querier_validateParams
 
 Given arguments from the command line, extract them into the function parameters; return only if successful.
 
@@ -91,6 +91,47 @@ Pseudocode:
     add last set of partialScores to totalScores
     delete partialScores
     return totalScores
+
+### querier_isLiteral
+
+checks if the word given is a literal or not
+
+Pseudocode
+
+    if word === 'and' or word == 'or'
+        return true
+    return false
+
+### addScores updateScores initScores getHighestScore
+
+Didn't need a seperate header for each as they're helper functions that have minimal difference, for `querier_process` and `main` that are used in `counters_iterate`, so it should be assumed all helper functions loop over each element of the counter
+
+Pseudocode for `addScores`:
+
+    if score != max score
+        set counter value to value + score
+
+Note: `updateScores` utilizes the data structure `countersHolder_t` to initialize partial and new scores, refer to the design spec for more details.
+Pseudocode for `updateScores`:
+
+    initialize partial and new scores
+
+    if newScore > 0
+        if newScore < partialScore
+            set newScore to partialScore
+    else 
+        set partial score to 0
+            
+Pseudocode for `initScores`:
+
+    set all partial scores to new scores
+
+Note: `getHighestScore` utilizes the data structure `node_t` to hold the key and score for the highest score, refer to the design spec for more details.
+Pseudocode for `getHighestScore`:
+
+    get highest score
+    if partial score > highest score
+        set partial score to highest score
 
 ## Other modules
 
